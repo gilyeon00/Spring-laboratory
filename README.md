@@ -1,2 +1,2 @@
-# spring-laboratory
-실험실
+# Welcome to Spring laboratory
+
