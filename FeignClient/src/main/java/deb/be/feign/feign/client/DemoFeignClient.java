@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(
-        name = "demo-client"
+        name = "demo-client"        // application.yml 에 설정한 값 명시
         , url = "${feign.url.prefix}"
         , configuration = DemoFeignConfig.class
 )
 public interface DemoFeignClient {
 
-    @GetMapping("/set")
+    @GetMapping("/get")
     ResponseEntity<BaseResponseInfo> callGet(@RequestHeader("CustomHeaderName") String customHeader,
                                              @RequestParam("name") String name,
                                              @RequestParam("age") Long age);

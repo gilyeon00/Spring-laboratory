@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)  // Json Serialize, Deserialize 와 같은 작업이 있을 때, 그 시점에 값이 없다면 해당 필드를 제외해줌
 public class BaseRequestInfo {
 
+    private String header;
     private String name;
     private Long age;
 }

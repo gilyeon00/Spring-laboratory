@@ -2,9 +2,9 @@ package deb.be.feign.service;
 
 
 import deb.be.feign.feign.client.DemoFeignClient;
-import deb.be.feign.feign.common.dto.BaseRequestInfo;
-import deb.be.feign.feign.config.DemoFeignConfig;
+import deb.be.feign.feign.common.dto.BaseResponseInfo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +14,10 @@ public class DemoService {
     private final DemoFeignClient demoFeignClient;
 
     public String get(){
-        demoFeignClient.callGet();
+        ResponseEntity<BaseResponseInfo> response = demoFeignClient.callGet("CustomHeader", "CustomName", 1L);
+        System.out.println("Name : " + response.getBody().getName());
+        System.out.println("Age : " + response.getBody().getAge());
+        System.out.println("Header : " + response.getBody().getHeader());
+        return "get";
     }
 }
