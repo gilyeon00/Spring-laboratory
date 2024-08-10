@@ -9,13 +9,27 @@ import org.springframework.web.bind.annotation.*;
 public class TargetController {
 
     @GetMapping("/get")
-    public BaseRequestInfo demoGet(@RequestHeader("CustomHeaderName") String header,
-                                   @RequestParam("name") String name,
-                                   @RequestParam("age") Long age){
+    public BaseRequestInfo demoGet(
+            @RequestHeader("CustomHeaderName") String header,
+            @RequestParam("name") String name,
+            @RequestParam("age") Long age
+    ) {
         return BaseRequestInfo.builder()
                 .header(header)
                 .name(name + " from target server")
                 .age(age)
+                .build();
+    }
+
+    @PostMapping("/post")
+    public BaseRequestInfo demoGet(
+            @RequestHeader("CustomHeaderName") String header,
+            @RequestBody BaseRequestInfo baseRequestInfo
+    ) {
+        return BaseRequestInfo.builder()
+                .header(header)
+                .name(baseRequestInfo.getName() + " from target server")
+                .age(baseRequestInfo.getAge())
                 .build();
     }
 }
