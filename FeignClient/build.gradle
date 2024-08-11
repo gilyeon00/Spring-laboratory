@@ -23,21 +23,22 @@ repositories {
     mavenCentral()
 }
 
-//ext {
-//    /*
-//        Spring Cloud Version
-//        https://spring.io/projects/spring-cloud
-//        https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2023.0-Release-Notes
-//     */
+ext {
+    /*
+        Spring Cloud Version
+        https://spring.io/projects/spring-cloud
+        https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2023.0-Release-Notes
+     */
 //    // Feign
-//    set('springCloudVersion', '2023.0.')
-//}
+    set('springCloudVersion', '2023.0.')
+//    set('commonLangVersion', '3.12.0')
+}
 
-//dependencyManagement {
-//    imports {
-//        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0"
-//    }
-//}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.2"
+    }
+}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -47,9 +48,13 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // Feign
-    implementation platform("org.springframework.cloud:spring-cloud-dependencies:2023.0.2")
+//    implementation platform("org.springframework.cloud:spring-cloud-dependencies:2023.0.2")
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // for 'StringUtils'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()
